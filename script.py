@@ -152,10 +152,9 @@ plt.ylabel('Cases')
 plt.grid(True)
 plt.show()
 
-
-
-
-#black_death_total_death = (200000000 - 75000000) / 2
-#print('\nblack death total deaths:\n')
-#print(black_death_total_death)
-
+#Jan 23
+slices = [1, 4, 1, 1, 1, 1, 1]
+labels = ['Japan', 'Thailand', 'Hong Kong', 'South Korea', 'Taiwan', 'Macao', 'USA']
+plt.pie(slices, labels=labels, autopct='%1.1f%%')
+plt.title("January 23 confirmed cases of Covid-19 outside of China - initial spread")
+plt.show()
