@@ -170,7 +170,7 @@ d1 = str(today.strftime("%m/%d"))  #month/day format
 covid_total_cases = str(covid_total_cases)
 contents = []
 txt_dates = []
-nextscope = []
+case_num = []
 
 with open("dates.txt", "r+") as f: #read
     contents = f.readlines()
@@ -180,9 +180,10 @@ with open("dates.txt", "r+") as f: #read
 if d1 not in contents:
     with open("dates.txt", "a+") as f:  #r and write
         txt_dates.append(d1)   # add today's date to end of list
-        f.write("\n" + d1 + ", " + covid_total_cases)   # write today's date into the file
-#for x in contents:
-#    print(x)
+        f.write("\n" + d1 + "," + covid_total_cases)   # write today's date into the file
+print('The dates in list are: ')
+for x in contents:
+    print(x)
 
 #dates.txt has the dates
 with open("dates.txt", "r+") as f:
@@ -190,8 +191,9 @@ with open("dates.txt", "r+") as f:
     case_num = [x.strip() for x in case_num]
     case_num = [i.split(",", 1)[1] for i in case_num]
 
-#for x in case_num:
-#    print(x)
+print('The number of cases in list are: ')
+for x in case_num:
+    print(x)
 
 #case_num = y, contents = x
 
@@ -202,9 +204,3 @@ plt.ylabel('Cases')
 plt.tight_layout()
 plt.grid(True)
 plt.show()
-
-#black_death_total_death = (200000000 - 75000000) / 2
-#print('\nblack death total deaths:\n')
-#print(black_death_total_death)
-
-
