@@ -163,24 +163,48 @@ plt.show()
 
 # get an up-to-date list of days in m/d format
 today = date.today()    #today's date
-print("Today's date:", today)
+#print("Today's date:", today)
 d1 = str(today.strftime("%m/%d"))  #month/day format 
-print("d1 =", d1)
+#print("d1 =", d1)
 
 covid_total_cases = str(covid_total_cases)
-
+contents = []
 txt_dates = []
-#txt_dates.append("05/08")
-dates = []
-with open("dates.txt", "r+") as f:
+nextscope = []
+
+with open("dates.txt", "r+") as f: #read
     contents = f.readlines()
     contents = [x.strip() for x in contents]
+    #contents = [x.split(",") for x in contents]
+    contents = [i.split(",", 1)[0] for i in contents]
 if d1 not in contents:
-    with open("dates.txt", "a+") as f:
+    with open("dates.txt", "a+") as f:  #r and write
         txt_dates.append(d1)   # add today's date to end of list
         f.write("\n" + d1 + ", " + covid_total_cases)   # write today's date into the file
-for x in contents:
-    print(x)
+#for x in contents:
+#    print(x)
 
+#dates.txt has the dates
+with open("dates.txt", "r+") as f:
+    case_num = f.readlines()
+    case_num = [x.strip() for x in case_num]
+    case_num = [i.split(",", 1)[1] for i in case_num]
+
+#for x in case_num:
+#    print(x)
+
+#case_num = y, contents = x
+
+plt.plot(contents, case_num)
+plt.title('Dynamically Updated Worldwide Cases of COVID-19 For May')
+plt.xlabel('Days')
+plt.ylabel('Cases')
+plt.tight_layout()
+plt.grid(True)
+plt.show()
+
+#black_death_total_death = (200000000 - 75000000) / 2
+#print('\nblack death total deaths:\n')
+#print(black_death_total_death)
 
 
