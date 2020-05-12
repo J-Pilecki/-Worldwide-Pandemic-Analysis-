@@ -191,16 +191,18 @@ with open("dates.txt", "r+") as f:
     case_num = [x.strip() for x in case_num]
     case_num = [i.split(",", 1)[1] for i in case_num]
 
+int_case_num = []
 print('The number of cases in list are: ')
 for x in case_num:
+    int_case_num.append(int(x))
     print(x)
 
 #case_num = y, contents = x
 
-plt.plot(contents, case_num)
+plt.plot(contents, int_case_num)
 plt.title('Dynamically Updated Worldwide Cases of COVID-19 For May')
 plt.xlabel('Days')
-plt.ylabel('Cases')
+plt.ylabel('Cases in Millions')
 plt.tight_layout()
 plt.grid(True)
 plt.show()
