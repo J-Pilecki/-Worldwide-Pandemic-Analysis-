@@ -154,11 +154,25 @@ plt.pie(slices, labels=labels, autopct='%1.1f%%')
 plt.title("January 23 confirmed cases of Covid-19 outside of China - initial spread")
 plt.show()
 
-# scrape stats so every day the page updates, the graph updates dynamically
-# find html elems that contain date -> find_all to put in []
-# worldwide cases -> find_all to put in []
-# graph the two dynamic vars date and cases
-# unique identifier to key the find_all elems
+us12 = 1298287
+rus12 = 232243
+spa12 = 227436
+uk12 = 223064
+ita12 = 219814
+ger12 = 170508
+bra12 = 162699
+tur12 = 139771
+fra12 = 137491
+ira12 = 109286
+chi12 = 84451
+
+dev_x12 = ['US', 'Russia', 'Spain', 'UK', 'Italy', 'Germany', 'Brazil', 'Turkey', 'France', 'Iran', 'China']
+dev_y12 = [us12, rus12, spa12, uk12, ita12, ger12, bra12, tur12, fra12, ira12, chi12]
+plt.xlabel('Covid-19 cases')
+plt.ylabel('Nations')
+plt.title('May 12 Top 11 Nations Covid-19 Cases')
+plt.barh(dev_x12, dev_y12)
+plt.show()
 
 
 # get an up-to-date list of days in m/d format
