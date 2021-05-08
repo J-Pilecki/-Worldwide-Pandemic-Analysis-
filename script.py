@@ -7,15 +7,9 @@ from matplotlib import pyplot as plt
 import numpy as np
 from datetime import date
 
-#using requests module access the webpage
 result = requests.get("https://www.worldometers.info/coronavirus/?utm_campaign=homeAdvegas1?")
-#print(result.status_code) #check that website was accessible, 200 = access
 src = result.content #store the page content in a variable
 soup = BeautifulSoup(src)  #create a BS object for later parsing
-#soup_cases = soup.find("div", "maincounter-number")
-#soup_cases = soup_cases.text
-#print('total cases of covid-19:')
-#print(soup_cases)  
 
 all_divs = soup.find_all("div", "maincounter-number")
 
@@ -27,8 +21,6 @@ for i in all_divs:
 covid_total_cases = int(numbers[0])
 covid_total_deaths = int(numbers[1])
 covid_total_recovered = int(numbers[2])
-#covid_total_cases = covid_total_cases.replace(",", "")
-#covid_total_deaths = covid_total_deaths.replace(",", "")
 
 print('data from: https://www.worldometers.info/coronavirus/?utm_campaign=homeAdvegas1?')
 print('total cases of COVID-19:')
@@ -50,10 +42,9 @@ print('\ntotal cases of 1918 Spanish flu H1N1:\n')
 print(span_total_cases)
 print('\ntotal estimated deaths of 1918 Spanish flu 1918:\n')
 print(span_total_deaths)
-#print(spanflu)
 
 print('\ndata from: https://pubmed.ncbi.nlm.nih.gov/21850217/ and https://www.who.int/csr/don/2010_08_06/en/ \n')
-swine_total_cases = 350000000 #(1400000000 - 700000000) / 2
+swine_total_cases = 350000000
 swine_total_deaths = 284000
 print('total cases of 2009 Swine flu H1N1:\n') 
 print(swine_total_cases)
@@ -177,9 +168,7 @@ plt.show()
 
 # get an up-to-date list of days in m/d format
 today = date.today()    #today's date
-#print("Today's date:", today)
 d1 = str(today.strftime("%m/%d"))  #month/day format 
-#print("d1 =", d1)
 
 covid_total_cases = str(covid_total_cases)
 contents = []
@@ -189,7 +178,6 @@ case_num = []
 with open("dates.txt", "r+") as f: #read
     contents = f.readlines()
     contents = [x.strip() for x in contents]
-    #contents = [x.split(",") for x in contents]
     contents = [i.split(",", 1)[0] for i in contents]
 if d1 not in contents:
     with open("dates.txt", "a+") as f:  #r and write
@@ -210,8 +198,6 @@ print('The number of cases in list are: ')
 for x in case_num:
     int_case_num.append(int(x))
     print(x)
-
-#case_num = y, contents = x
 
 plt.plot(contents, int_case_num)
 plt.title('Dynamically Updated Worldwide Cases of COVID-19 For May')
